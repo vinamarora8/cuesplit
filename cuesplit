@@ -1,0 +1,6 @@
+#!/bin/bash
+
+shnsplit -o flac -f $1 $2;
+cuetag $1 split-track*.flac;
+
+paste -d' ' <(ls split-track*.flac) <(cueprint -t "\"%n-%t\"\n" $1) | xargs -n2 mv; 
